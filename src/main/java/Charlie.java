@@ -10,7 +10,7 @@ public class Charlie {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String input = scanner.nextLine();
-            String[] words = input.split("\\s+");
+            String[] words = input.split(" ", 2);
             if (input.equals("list")) {
                 for (int i = 0; i < tasks.size(); i++) {
                     System.out.println(i + 1 + ". " + tasks.get(i).toString());
@@ -21,24 +21,44 @@ public class Charlie {
                 break;
             }
             else {
-                if (words.length == 2) {
-                    if (words[0].equals("mark")) {
+                switch (words[0]) {
+                    case "mark" -> {
                         int index = Integer.parseInt(words[1]) - 1;
                         tasks.get(index).mark();
                         System.out.println("Nice, I have marked your task:");
                         System.out.println(tasks.get(index).toString());
-                    } else if (words[0].equals("unmark")) {
+                    }
+                    case "unmark" -> {
                         int index = Integer.parseInt(words[1]) - 1;
                         tasks.get(index).unmark();
                         System.out.println("I have unmarked your task:");
                         System.out.println(tasks.get(index).toString());
-                    } else {
+                    }
+                    case "todo" -> {
+                        Task task = new Todo(words[1]);
+                        tasks.add(task);
+                        System.out.println("Got it, I have added the task:");
+                        System.out.println(task);
+                        System.out.println("Now, you have " + tasks.size() + " tasks");
+                    }
+                    case "deadline" -> {
+                        Task task = new Deadline(words[1]);
+                        tasks.add(task);
+                        System.out.println("Got it, I have added the task:");
+                        System.out.println(task);
+                        System.out.println("Now, you have " + tasks.size() + " tasks");
+                    }
+                    case "event" -> {
+                        Task task = new Event(words[1]);
+                        tasks.add(task);
+                        System.out.println("Got it, I have added the task:");
+                        System.out.println(task);
+                        System.out.println("Now, you have " + tasks.size() + " tasks");
+                    }
+                    default -> {
                         tasks.add(new Task(input));
                         System.out.println("added: " + input);
                     }
-                } else {
-                    tasks.add(new Task(input));
-                    System.out.println("added: " + input);
                 }
             }
         }
