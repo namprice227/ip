@@ -3,6 +3,7 @@ public class Deadline extends Task {
 
     public Deadline(String task) {
         super(task.split("/by")[0]);
+        System.out.println(task);
         date = task.split("/by")[1];
     }
 
