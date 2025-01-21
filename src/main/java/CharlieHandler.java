@@ -26,7 +26,7 @@ public class CharlieHandler {
         return true;
     }
 
-    public static boolean isValidMark(String[] words) {
+    public static boolean isValidNumber(String[] words) {
         try {
             Integer.parseInt(words[1]);
             return true;
@@ -41,7 +41,8 @@ public class CharlieHandler {
         System.out.println("1. todo <task description>");
         System.out.println("2. deadline <task description> /by <time>");
         System.out.println("3. event <event description> /from <start time> /to <end time>");
-        System.out.println("4. list");
-        System.out.println("5. bye");
+        System.out.println("4. delete <task number>");
+        System.out.println("5. list");
+        System.out.println("6. bye");
     }
 }

@@ -18,6 +18,9 @@ public class Charlie {
                 for (int i = 0; i < tasks.size(); i++) {
                     System.out.println(i + 1 + ". " + tasks.get(i).toString());
                 }
+                if (tasks.isEmpty()) {
+                    System.out.println("There are no tasks, please feel free to add more");
+                }
             }
 
             else if (input.equals("bye")) {
@@ -26,7 +29,7 @@ public class Charlie {
             else {
                 switch (words[0]) {
                     case "mark" -> {
-                        if (CharlieHandler.isValidMark(words)) {
+                        if (CharlieHandler.isValidNumber(words)) {
                             int index = Integer.parseInt(words[1]) - 1;
                             tasks.get(index).mark();
                             System.out.println("Nice, I have marked your task:");
@@ -34,7 +37,7 @@ public class Charlie {
                         }
                     }
                     case "unmark" -> {
-                        if (CharlieHandler.isValidMark(words)) {
+                        if (CharlieHandler.isValidNumber(words)) {
                             int index = Integer.parseInt(words[1]) - 1;
                             tasks.get(index).unmark();
                             System.out.println("I have unmarked your task:");
@@ -64,6 +67,16 @@ public class Charlie {
                             Task task = new Event(words[1]);
                             tasks.add(task);
                             System.out.println("Got it, I have added the task:");
+                            System.out.println(task);
+                            System.out.println("Now, you have " + tasks.size() + " tasks");
+                        }
+                    }
+                    case "delete" -> {
+                        if (CharlieHandler.isValidNumber(words)) {
+                            int index = Integer.parseInt(words[1]) - 1;
+                            Task task = tasks.get(index);
+                            tasks.remove(index);
+                            System.out.println("Got it, I have removed the task:");
                             System.out.println(task);
                             System.out.println("Now, you have " + tasks.size() + " tasks");
                         }
