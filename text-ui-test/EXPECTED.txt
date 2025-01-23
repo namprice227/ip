@@ -3,6 +3,8 @@ What can I do for you?
 Got it, I have added the task:
 [T][ ] go grocery shopping
 Now, you have 1 tasks
+Oh no! The description of a deadline cannot be empty.
+Usage: deadline <task description> /by <time>
 Got it, I have added the task:
 [D][ ] do cs2103t homework (by: 21/1)
 Now, you have 2 tasks
