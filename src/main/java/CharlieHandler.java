@@ -9,7 +9,7 @@ public class CharlieHandler {
     }
 
     public static boolean isValidDeadline(String[] words) {
-        if (words.length < 2 || words[1].isEmpty()) {
+        if (words.length < 2 || words[1].isEmpty() || !words[1].contains("/by")) {
             System.out.println("Oh no! The description of a deadline cannot be empty.");
             System.out.println("Usage: deadline <task description> /by <time>");
             return false;
@@ -18,7 +18,7 @@ public class CharlieHandler {
     }
 
     public static boolean isValidEvent(String[] words) {
-        if (words.length < 2 || words[1].isEmpty()) {
+        if (words.length < 2 || words[1].isEmpty() || !words[1].contains("/from") || !words[1].contains("/to")) {
             System.out.println("Oh no! The description of an event cannot be empty.");
             System.out.println("Usage: event <event description> /from <start time> /to <end time>");
             return false;
