@@ -8,11 +8,22 @@ import static java.lang.System.exit;
 
 public class Charlie {
 
+    private static void appendToFile(String filePath, String textToAppend) {
+        try {
+            FileWriter fw = new FileWriter(filePath, true); // create a FileWriter in append mode
+            fw.write(textToAppend);
+            fw.close();
+        }
+        catch (IOException e) {
+            System.out.println("Error writing to file");
+        }
+    }
+
     public static void main(String[] args) {
         ArrayList<Task> tasks = new ArrayList<Task>();
         File folder = new File("./data"); // Reference to the "data" folder
         File file = new File(folder, "charlie.txt"); // File within the folder
-
+        String filepath = file.getAbsolutePath();
         try {
             // Check if the folder exists
             if (!folder.exists()) {
@@ -86,6 +97,7 @@ public class Charlie {
                         if (CharlieHandler.isValidTodo(words)) {
                             Task task = new Todo(words[1]);
                             tasks.add(task);
+                            appendToFile(filepath, task.writeToFile());
                             System.out.println("Got it, I have added the task:");
                             System.out.println(task);
                             System.out.println("Now, you have " + tasks.size() + " tasks");
@@ -95,6 +107,7 @@ public class Charlie {
                         if (CharlieHandler.isValidDeadline(words)) {
                             Task task = new Deadline(words[1]);
                             tasks.add(task);
+                            appendToFile(filepath, task.writeToFile());
                             System.out.println("Got it, I have added the task:");
                             System.out.println(task);
                             System.out.println("Now, you have " + tasks.size() + " tasks");
@@ -104,6 +117,7 @@ public class Charlie {
                         if (CharlieHandler.isValidEvent(words)) {
                             Task task = new Event(words[1]);
                             tasks.add(task);
+                            appendToFile(filepath, task.writeToFile());
                             System.out.println("Got it, I have added the task:");
                             System.out.println(task);
                             System.out.println("Now, you have " + tasks.size() + " tasks");
