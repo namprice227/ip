@@ -7,7 +7,17 @@ public class Deadline extends Task {
         date = task.split("/by")[1];
     }
 
+    public Deadline(String task, String date, Boolean marked) {
+        super(task, marked);
+        System.out.println(task);
+        this.date = date;
+    }
+
     public String toString() {
         return "[D]" + super.toString() + "(by:" + date + ")";
+    }
+
+    public String writeToFile() {
+        return "E" + super.writeToFile() +  " | " + date;
     }
 }

@@ -1,10 +1,48 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.File;
+
+import static java.lang.System.exit;
 
 public class Charlie {
 
     public static void main(String[] args) {
         ArrayList<Task> tasks = new ArrayList<Task>();
+        File folder = new File("./data"); // Reference to the "data" folder
+        File file = new File(folder, "charlie.txt"); // File within the folder
+
+        try {
+            // Check if the folder exists
+            if (!folder.exists()) {
+                // Create the folder
+                if (!folder.mkdirs()) {
+                    System.out.println("Failed to create folder 'data'.");
+                    return; // Exit if the folder creation fails
+                }
+            }
+
+            // Check if the file exists
+            if (file.exists()) {
+                System.out.println("File already exists. Reading contents:");
+
+                // Read the file
+                Scanner reader = new Scanner(file);
+                while (reader.hasNextLine()) {
+                    String line = reader.nextLine();
+                    tasks.add(Task.addFromFile(line));
+                }
+                reader.close();
+            } else {
+                // Create the file
+                if (!file.createNewFile()) {
+                    System.out.println("Failed to create file 'charlie.txt'.");
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+        }
         System.out.println("Hello! I'm Charlie");
         System.out.println("What can I do for you?");
         Scanner scanner = new Scanner(System.in);
