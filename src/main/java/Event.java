@@ -1,20 +1,23 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
-    private final String startTime;
-    private final String endTime;
+    private final LocalDate startTime;
+    private final LocalDate endTime;
     public Event(String task) {
         super(task.split("/from")[0]);
-        startTime = task.split("/from")[1].split("/to")[0];
-        endTime = task.split("/to")[1];
+        startTime = LocalDate.parse(task.split("/from")[1].split("/to")[0].trim());
+        endTime = LocalDate.parse(task.split("/to")[1].trim());
     }
 
     public Event(String task, String startTime, String endTime, Boolean marked) {
         super(task, marked);
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.startTime = LocalDate.parse(startTime);
+        this.endTime = LocalDate.parse(endTime);
     }
 
     public String toString() {
-        return "[E]" +super.toString() + "(from:" + startTime + "to:" + endTime + ")";
+        return "[E]" +super.toString() + "(from:" + startTime.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "to:" + endTime.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     public String writeToFile() {

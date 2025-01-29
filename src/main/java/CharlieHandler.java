@@ -1,4 +1,15 @@
+import java.time.LocalDate;
+
 public class CharlieHandler {
+    private static boolean isValidDate(String date) {
+        try {
+            LocalDate.parse(date.trim());
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
     public static boolean isValidTodo(String[] words) {
         if (words.length < 2 || words[1].isEmpty()) {
             System.out.println("Oh no! The description of a todo cannot be empty.");
@@ -14,12 +25,22 @@ public class CharlieHandler {
             System.out.println("Usage: deadline <task description> /by <time>");
             return false;
         }
+        if (!isValidDate(words[1].split("/by")[1])) {
+            System.out.println("Oh no! your date needs to be in the format YYYY-MM-DD");
+            System.out.println("Usage: deadline <task description> /by <time>");
+            return false;
+        }
         return true;
     }
 
     public static boolean isValidEvent(String[] words) {
         if (words.length < 2 || words[1].isEmpty() || !words[1].contains("/from") || !words[1].contains("/to")) {
             System.out.println("Oh no! The description of an event cannot be empty.");
+            System.out.println("Usage: event <event description> /from <start time> /to <end time>");
+            return false;
+        }
+        if (!isValidDate(words[1].split("/from")[1].split("/to")[0]) && !isValidDate(words[1].split("/from")[1].split("/to")[1])) {
+            System.out.println("Oh no! your date needs to be in the format YYYY-MM-DD");
             System.out.println("Usage: event <event description> /from <start time> /to <end time>");
             return false;
         }
