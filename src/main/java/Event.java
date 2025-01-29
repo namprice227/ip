@@ -7,7 +7,17 @@ public class Event extends Task {
         endTime = task.split("/to")[1];
     }
 
+    public Event(String task, String startTime, String endTime, Boolean marked) {
+        super(task, marked);
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
     public String toString() {
         return "[E]" +super.toString() + "(from:" + startTime + "to:" + endTime + ")";
+    }
+
+    public String writeToFile() {
+        return "E" + super.writeToFile() +  "|" + startTime + "|" + endTime + "\n";
     }
 }
