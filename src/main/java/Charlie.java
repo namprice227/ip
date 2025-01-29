@@ -10,9 +10,9 @@ public class Charlie {
 
     private static void writeToFile(String filePath, ArrayList<Task> tasks) {
         try {
-            FileWriter fw = new FileWriter(filePath, true); // create a FileWriter in append mode
+            FileWriter fw = new FileWriter(filePath); // create a FileWriter in append mode
             for (Task task : tasks) {
-                fw.write(task.toString());
+                fw.write(task.writeToFile());
             }
             fw.close();
         }
