@@ -8,10 +8,12 @@ import static java.lang.System.exit;
 
 public class Charlie {
 
-    private static void appendToFile(String filePath, String textToAppend) {
+    private static void writeToFile(String filePath, ArrayList<Task> tasks) {
         try {
             FileWriter fw = new FileWriter(filePath, true); // create a FileWriter in append mode
-            fw.write(textToAppend);
+            for (Task task : tasks) {
+                fw.write(task.toString());
+            }
             fw.close();
         }
         catch (IOException e) {
@@ -81,6 +83,7 @@ public class Charlie {
                         if (CharlieHandler.isValidNumber(words)) {
                             int index = Integer.parseInt(words[1]) - 1;
                             tasks.get(index).mark();
+                            writeToFile(filepath, tasks);
                             System.out.println("Nice, I have marked your task:");
                             System.out.println(tasks.get(index).toString());
                         }
@@ -89,6 +92,7 @@ public class Charlie {
                         if (CharlieHandler.isValidNumber(words)) {
                             int index = Integer.parseInt(words[1]) - 1;
                             tasks.get(index).unmark();
+                            writeToFile(filepath, tasks);
                             System.out.println("I have unmarked your task:");
                             System.out.println(tasks.get(index).toString());
                         }
@@ -97,7 +101,7 @@ public class Charlie {
                         if (CharlieHandler.isValidTodo(words)) {
                             Task task = new Todo(words[1]);
                             tasks.add(task);
-                            appendToFile(filepath, task.writeToFile());
+                            writeToFile(filepath, tasks);
                             System.out.println("Got it, I have added the task:");
                             System.out.println(task);
                             System.out.println("Now, you have " + tasks.size() + " tasks");
@@ -107,7 +111,7 @@ public class Charlie {
                         if (CharlieHandler.isValidDeadline(words)) {
                             Task task = new Deadline(words[1]);
                             tasks.add(task);
-                            appendToFile(filepath, task.writeToFile());
+                            writeToFile(filepath, tasks);
                             System.out.println("Got it, I have added the task:");
                             System.out.println(task);
                             System.out.println("Now, you have " + tasks.size() + " tasks");
@@ -117,7 +121,7 @@ public class Charlie {
                         if (CharlieHandler.isValidEvent(words)) {
                             Task task = new Event(words[1]);
                             tasks.add(task);
-                            appendToFile(filepath, task.writeToFile());
+                            writeToFile(filepath, tasks);
                             System.out.println("Got it, I have added the task:");
                             System.out.println(task);
                             System.out.println("Now, you have " + tasks.size() + " tasks");
@@ -128,6 +132,7 @@ public class Charlie {
                             int index = Integer.parseInt(words[1]) - 1;
                             Task task = tasks.get(index);
                             tasks.remove(index);
+                            writeToFile(filepath, tasks);
                             System.out.println("Got it, I have removed the task:");
                             System.out.println(task);
                             System.out.println("Now, you have " + tasks.size() + " tasks");
