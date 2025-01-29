@@ -1,23 +1,29 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
-    private final String date;
+    private final LocalDate date;
 
     public Deadline(String task) {
         super(task.split("/by")[0]);
-        System.out.println(task);
-        date = task.split("/by")[1];
+        date = LocalDate.parse(task.split("/by")[1].trim());
     }
 
     public Deadline(String task, String date, Boolean marked) {
         super(task, marked);
-        System.out.println(task);
-        this.date = date;
+        this.date = LocalDate.parse(date);
     }
 
     public String toString() {
-        return "[D]" + super.toString() + "(by:" + date + ")";
+        return "[D]" + super.toString() + "(by:" + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     public String writeToFile() {
-        return "D" + super.writeToFile() +  "|" + date + "\n";
+        try {
+            return "D" + super.writeToFile() + "|" + date.toString() + "\n";
+        } catch (Exception e) {
+            System.out.println(date);
+        }
+        return "D" + super.writeToFile() + "|" + date.toString() + "\n";
     }
 }
