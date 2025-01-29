@@ -18,6 +18,6 @@ public class Deadline extends Task {
     }
 
     public String writeToFile() {
-        return "D" + super.writeToFile() +  " | " + date;
+        return "D" + super.writeToFile() +  "|" + date + "\n";
     }
 }

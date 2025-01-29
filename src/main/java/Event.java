@@ -18,6 +18,6 @@ public class Event extends Task {
     }
 
     public String writeToFile() {
-        return "E" + super.writeToFile() +  " | " + startTime + " | " + endTime;
+        return "E" + super.writeToFile() +  "|" + startTime + "|" + endTime + "\n";
     }
 }

@@ -27,7 +27,7 @@ public  class Task {
         if (this.marked) {
             ismarked = 1;
         }
-        return " | " + ismarked + " | " + this.activity;
+        return "|" + ismarked + "|" + this.activity;
     }
 
     static public Task addFromFile(String line) {

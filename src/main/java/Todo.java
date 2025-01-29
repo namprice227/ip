@@ -12,6 +12,6 @@ public class Todo extends Task{
     }
 
     public String writeToFile() {
-        return "T" + super.writeToFile();
+        return "T" + super.writeToFile() + "\n";
     }
 }
