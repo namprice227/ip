@@ -34,6 +34,10 @@ public class Task {
         return "|" + ismarked + "|" + this.activity;
     }
 
+    public Boolean containsWord(String word) {
+        return this.activity.contains(word);
+    }
+
     static public Task addFromFile(String line) {
         String[] parts = line.split("\\|");
         switch (parts[0]) {
