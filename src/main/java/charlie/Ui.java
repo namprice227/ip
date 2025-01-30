@@ -1,10 +1,10 @@
-import java.io.File;
-import java.io.IOException;
+package charlie;
+
 import java.util.Scanner;
 
 class Ui {
     public static void showWelcome() {
-        System.out.println("Hello! I'm Charlie");
+        System.out.println("Hello! I'm charlie.Charlie");
         System.out.println("What can I do for you?");
     }
 

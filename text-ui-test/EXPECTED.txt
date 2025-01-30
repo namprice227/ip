@@ -1,4 +1,4 @@
-Hello! I'm Charlie
+Hello! I'm charlie.Charlie
 What can I do for you?
 Got it, I have added the task:
 [T][ ] go grocery shopping

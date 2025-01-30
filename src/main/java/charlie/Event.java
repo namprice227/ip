@@ -1,9 +1,12 @@
+package charlie;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
     private final LocalDate startTime;
     private final LocalDate endTime;
+
     public Event(String task) {
         super(task.split("/from")[0]);
         startTime = LocalDate.parse(task.split("/from")[1].split("/to")[0].trim());
@@ -17,10 +20,10 @@ public class Event extends Task {
     }
 
     public String toString() {
-        return "[E]" +super.toString() + "(from:" + startTime.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "to:" + endTime.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[E]" + super.toString() + "(from:" + startTime.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "to:" + endTime.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     public String writeToFile() {
-        return "E" + super.writeToFile() +  "|" + startTime + "|" + endTime + "\n";
+        return "E" + super.writeToFile() + "|" + startTime + "|" + endTime + "\n";
     }
 }

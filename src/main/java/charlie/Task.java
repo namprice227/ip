@@ -1,6 +1,9 @@
-public  class Task {
+package charlie;
+
+public class Task {
     private final String activity;
     private Boolean marked;
+
     Task(String activity) {
         this.activity = activity;
         this.marked = false;
@@ -10,6 +13,7 @@ public  class Task {
         this.activity = activity;
         this.marked = marked;
     }
+
     public void mark() {
         this.marked = true;
     }
@@ -61,8 +65,7 @@ public  class Task {
     public String toString() {
         if (marked) {
             return "[x] " + activity;
-        }
-        else {
+        } else {
             return "[ ] " + activity;
         }
     }

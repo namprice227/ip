@@ -1,9 +1,4 @@
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.File;
-import java.time.LocalDate;
+package charlie;
 
 
 public class Charlie {
@@ -15,7 +10,7 @@ public class Charlie {
         this.taskList = new TaskList(storage);
     }
 
-    public void run () {
+    public void run() {
         Ui.showWelcome();
         while (true) {
             try {

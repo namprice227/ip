@@ -1,3 +1,5 @@
+package charlie;
+
 import static java.lang.Integer.parseInt;
 import static java.lang.System.exit;
 
@@ -5,13 +7,12 @@ class Parser {
     private String action;
     private String task;
 
-    Parser (String input) {
+    Parser(String input) {
         try {
             String[] words = input.split(" ", 2);
             this.action = words[0];
             this.task = words[1];
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             String[] words = input.split(" ", 2);
             this.action = words[0];
             this.task = "";
