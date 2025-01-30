@@ -19,43 +19,43 @@ class Parser {
         }
     }
 
-    public void action(TaskList tasklist) {
+    public void action(TaskList taskList) {
         switch (this.action) {
             case "" -> {
                 System.out.println("Please tell me what to do");
                 Ui.printHelp();
             }
             case "list" -> {
-                tasklist.listTasks();
+                taskList.listTasks();
             }
             case "mark" -> {
                 if (CharlieHandler.isValidNumber(task)) {
-                    tasklist.markTask(parseInt(task));
+                    taskList.markTask(parseInt(task));
                 }
             }
             case "unmark" -> {
                 if (CharlieHandler.isValidNumber(task)) {
-                    tasklist.unmarkTask(parseInt(task));
+                    taskList.unmarkTask(parseInt(task));
                 }
             }
             case "todo" -> {
                 if (CharlieHandler.isValidTodo(task)) {
-                    tasklist.addTask(new Todo(task));
+                    taskList.addTask(new Todo(task));
                 }
             }
             case "deadline" -> {
                 if (CharlieHandler.isValidDeadline(task)) {
-                    tasklist.addTask(new Deadline(task));
+                    taskList.addTask(new Deadline(task));
                 }
             }
             case "event" -> {
                 if (CharlieHandler.isValidEvent(task)) {
-                    tasklist.addTask(new Event(task));
+                    taskList.addTask(new Event(task));
                 }
             }
             case "delete" -> {
                 if (CharlieHandler.isValidNumber(task)) {
-                    tasklist.deleteTask(parseInt(task));
+                    taskList.deleteTask(parseInt(task));
                 }
             }
             case "bye" -> {
