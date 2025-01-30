@@ -1,5 +1,9 @@
 package charlie;
 
+/**
+ * The Task class represents a general task with an activity description and a marked status.
+ * Subclasses may extend this class to represent specific types of tasks (e.g., Todo, Deadline, Event).
+ */
 public class Task {
     private final String activity;
     private Boolean marked;
@@ -14,18 +18,26 @@ public class Task {
         this.marked = marked;
     }
 
+    /**
+     * Marks the task as completed.
+     */
     public void mark() {
         this.marked = true;
     }
 
+    /**
+     * Unmarks the task, setting its status back to incomplete.
+     */
     public void unmark() {
         this.marked = false;
     }
 
-    protected Boolean getMarked() {
-        return this.marked;
-    }
-
+    /**
+     * Returns a string representation of the task that can be written to a file.
+     * The format includes the marked status and the task description.
+     *
+     * @return A string representing the task in file-save format.
+     */
     public String writeToFile() {
         int ismarked = 0;
         if (this.marked) {
@@ -34,6 +46,13 @@ public class Task {
         return "|" + ismarked + "|" + this.activity;
     }
 
+    /**
+     * Creates a Task object from a string representation loaded from a file.
+     * The string is split into parts based on the file format and a specific task type is created accordingly.
+     *
+     * @param line A string representing a task from a file.
+     * @return A Task object based on the information in the line.
+     */
     static public Task addFromFile(String line) {
         String[] parts = line.split("\\|");
         switch (parts[0]) {

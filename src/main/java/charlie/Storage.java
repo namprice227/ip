@@ -8,6 +8,10 @@ import java.util.Scanner;
 
 import static java.lang.System.exit;
 
+/**
+ * The Storage class is responsible for loading and saving tasks from and to a file.
+ * It ensures that the file exists before attempting any read or write operations.
+ */
 class Storage {
     private final File file;
 
@@ -30,7 +34,12 @@ class Storage {
         }
     }
 
-
+    /**
+     * Loads the tasks from the storage file and returns them as a list.
+     * If the file doesn't exist or there's an error reading, an empty list is returned.
+     *
+     * @return An ArrayList of Task objects loaded from the file.
+     */
     public ArrayList<Task> loadTasks() {
         ArrayList<Task> tasks = new ArrayList<>();
         ensureFileExists();
@@ -46,6 +55,12 @@ class Storage {
         return tasks;
     }
 
+    /**
+     * Saves the provided list of tasks to the storage file.
+     * If an error occurs while writing, an error message is displayed.
+     *
+     * @param tasks The list of tasks to be saved to the file.
+     */
     public void saveTasks(ArrayList<Task> tasks) {
         try (FileWriter fw = new FileWriter(file)) {
             for (Task task : tasks) {

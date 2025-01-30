@@ -3,6 +3,10 @@ package charlie;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a deadline task with a specific due date.
+ * Inherits from the Task class and adds functionality for storing and displaying a deadline.
+ */
 public class Deadline extends Task {
     private final LocalDate date;
 
@@ -20,6 +24,12 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + " (by: " + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
+    /**
+     * Returns a string that can be written to a file to save the Deadline task.
+     * The format includes "D" for the task type, followed by the task description and deadline date.
+     *
+     * @return A string representing the Deadline task in a file-save format.
+     */
     public String writeToFile() {
         try {
             return "D" + super.writeToFile() + "|" + date.toString() + "\n";

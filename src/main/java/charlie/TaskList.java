@@ -2,6 +2,10 @@ package charlie;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a list of tasks that can be added, deleted, marked, unmarked, and listed.
+ * This class manages tasks by interacting with the Storage class to persist data in a file.
+ */
 class TaskList {
     private final ArrayList<Task> tasks;
     private final Storage storage;
@@ -11,6 +15,11 @@ class TaskList {
         this.tasks = storage.loadTasks();
     }
 
+    /**
+     * Adds a new task to the list and saves the updated list to the storage file.
+     *
+     * @param task The task to be added to the list.
+     */
     public void addTask(Task task) {
         tasks.add(task);
         storage.saveTasks(tasks);
@@ -19,6 +28,11 @@ class TaskList {
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
     }
 
+    /**
+     * Deletes a task from the list by its index and saves the updated list to the storage file.
+     *
+     * @param index The index of the task to be deleted (1-based).
+     */
     public void deleteTask(int index) {
         if (index >= 1 && index <= tasks.size()) {
             Task removedTask = tasks.remove(index - 1);
@@ -31,6 +45,11 @@ class TaskList {
         }
     }
 
+    /**
+     * Marks a task as completed based on its index and saves the updated list to the storage file.
+     *
+     * @param index The index of the task to be marked as completed (1-based).
+     */
     public void markTask(int index) {
         if (index >= 1 && index <= tasks.size()) {
             tasks.get(index - 1).mark();
@@ -42,6 +61,11 @@ class TaskList {
         }
     }
 
+    /**
+     * Unmarks a task, indicating it is not completed yet, based on its index and saves the updated list to the storage file.
+     *
+     * @param index The index of the task to be unmarked (1-based).
+     */
     public void unmarkTask(int index) {
         if (index >= 1 && index <= tasks.size()) {
             tasks.get(index - 1).unmark();
@@ -53,6 +77,10 @@ class TaskList {
         }
     }
 
+    /**
+     * Lists all the tasks currently in the list.
+     * If no tasks exist, a message is shown indicating that the list is empty.
+     */
     public void listTasks() {
         if (tasks.isEmpty()) {
             System.out.println("There are no tasks, please feel free to add more");
