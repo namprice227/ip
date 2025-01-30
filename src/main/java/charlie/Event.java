@@ -23,6 +23,12 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (from: " + startTime.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " to: " + endTime.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
+    /**
+     * Returns a string that can be written to a file to save the Deadline task.
+     * The format includes "E" for the task type, followed by the task description and event start date and end date.
+     *
+     * @return A string representing the Deadline task in a file-save format.
+     */
     public String writeToFile() {
         return "E" + super.writeToFile() + "|" + startTime + "|" + endTime + "\n";
     }

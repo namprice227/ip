@@ -3,6 +3,10 @@ package charlie;
 import static java.lang.Integer.parseInt;
 import static java.lang.System.exit;
 
+/**
+ * The Parser class is responsible for interpreting user input commands and performing actions
+ * on the TaskList. It handles various actions like marking tasks, adding tasks, listing tasks, etc.
+ */
 class Parser {
     private String action;
     private String task;
@@ -19,6 +23,12 @@ class Parser {
         }
     }
 
+    /**
+     * Executes the corresponding action based on the parsed input.
+     * The action is matched to a specific command and then the corresponding method of the TaskList is called.
+     *
+     * @param tasklist The task list on which the action should be performed.
+     */
     public void action(TaskList tasklist) {
         switch (this.action) {
             case "" -> {

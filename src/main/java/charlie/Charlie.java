@@ -1,5 +1,9 @@
 package charlie;
 
+/**
+ * The main class that orchestrates the Charlie task manager.
+ * It initializes storage, loads tasks, and processes user commands.
+ */
 
 public class Charlie {
     private final Storage storage;
