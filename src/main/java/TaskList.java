@@ -18,8 +18,8 @@ class TaskList {
     }
 
     public void deleteTask(int index) {
-        if (index >= 0 && index < tasks.size()) {
-            Task removedTask = tasks.remove(index);
+        if (index >= 1 && index <= tasks.size()) {
+            Task removedTask = tasks.remove(index - 1);
             storage.saveTasks(tasks);
             System.out.println("Noted. I've removed this task:");
             System.out.println("  " + removedTask);
@@ -30,22 +30,22 @@ class TaskList {
     }
 
     public void markTask(int index) {
-        if (index >= 0 && index < tasks.size()) {
-            tasks.get(index).mark();
+        if (index >= 1 && index <= tasks.size()) {
+            tasks.get(index - 1).mark();
             storage.saveTasks(tasks);
             System.out.println("Nice! I've marked this task as done:");
-            System.out.println(tasks.get(index));
+            System.out.println(tasks.get(index - 1));
         } else {
             System.out.println("Invalid task number.");
         }
     }
 
     public void unmarkTask(int index) {
-        if (index >= 0 && index < tasks.size()) {
-            tasks.get(index).unmark();
+        if (index >= 1 && index <= tasks.size()) {
+            tasks.get(index - 1).unmark();
             storage.saveTasks(tasks);
             System.out.println("OK, I've marked this task as not done yet:");
-            System.out.println(tasks.get(index));
+            System.out.println(tasks.get(index - 1));
         } else {
             System.out.println("Invalid task number.");
         }

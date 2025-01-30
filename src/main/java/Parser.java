@@ -2,13 +2,20 @@ import static java.lang.Integer.parseInt;
 import static java.lang.System.exit;
 
 class Parser {
-    private final String action;
-    private final String task;
+    private String action;
+    private String task;
 
     Parser (String input) {
-        String[] words = input.split(" ", 2);
-        this.action = words[0];
-        this.task = words[1];
+        try {
+            String[] words = input.split(" ", 2);
+            this.action = words[0];
+            this.task = words[1];
+        }
+        catch (Exception e) {
+            String[] words = input.split(" ", 2);
+            this.action = words[0];
+            this.task = "";
+        }
     }
 
     public void action(TaskList tasklist) {
