@@ -91,4 +91,12 @@ class TaskList {
             }
         }
     }
+
+    public void findTask(String taskName) {
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).containsWord(taskName)) {
+                System.out.println((i + 1) + ". " + tasks.get(i));
+            }
+        }
+    }
 }

@@ -46,6 +46,10 @@ public class Task {
         return "|" + ismarked + "|" + this.activity;
     }
 
+    public Boolean containsWord(String word) {
+        return this.activity.contains(word);
+    }
+
     /**
      * Creates a Task object from a string representation loaded from a file.
      * The string is split into parts based on the file format and a specific task type is created accordingly.

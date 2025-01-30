@@ -68,6 +68,9 @@ class Parser {
                     taskList.deleteTask(parseInt(task));
                 }
             }
+            case "find" -> {
+                tasklist.findTask(task.trim());
+            }
             case "bye" -> {
                 Ui.showGoodbye();
                 exit(0);
