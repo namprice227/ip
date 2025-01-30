@@ -64,9 +64,9 @@ public class Task {
 
     public String toString() {
         if (marked) {
-            return "[x] " + activity;
+            return "[X] " + activity.trim();
         } else {
-            return "[ ] " + activity;
+            return "[ ] " + activity.trim();
         }
     }
 }
