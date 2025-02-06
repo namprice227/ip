@@ -9,10 +9,11 @@ import java.util.Scanner;
 class Ui {
     /**
      * Displays a welcome message when the application starts.
+     *
+     * @return The welcome message as a String.
      */
-    public static void showWelcome() {
-        System.out.println("Hello! I'm charlie.Charlie");
-        System.out.println("What can I do for you?");
+    public static String showWelcome() {
+        return "Hello! I'm charlie.Charlie\nWhat can I do for you?";
     }
 
     /**
@@ -27,25 +28,35 @@ class Ui {
 
     /**
      * Prints a help message that shows the available commands the user can use.
+     *
+     * @return The help message as a String.
      */
-    public static void printHelp() {
-        System.out.println("Here are the commands you can use:");
-        System.out.println("1. todo <task description>");
-        System.out.println("2. deadline <task description> /by <time>");
-        System.out.println("3. event <event description> /from <start time> /to <end time>");
-        System.out.println("4. delete <task number>");
-        System.out.println("5. list");
-        System.out.println("6. bye");
+    public static String printHelp() {
+        return "Here are the commands you can use:\n" +
+                "1. todo <task description>\n" +
+                "2. deadline <task description> /by <time>\n" +
+                "3. event <event description> /from <start time> /to <end time>\n" +
+                "4. delete <task number>\n" +
+                "5. list\n" +
+                "6. bye";
     }
 
     /**
      * Displays a goodbye message when the user exits the application.
+     *
+     * @return The goodbye message as a String.
      */
-    public static void showGoodbye() {
-        System.out.println("Goodbye! Hope to see you soon!");
+    public static String showGoodbye() {
+        return "Goodbye! Hope to see you soon!";
     }
 
-    public static void showError(String message) {
-        System.out.println("Error: " + message);
+    /**
+     * Displays an error message when there is an error.
+     *
+     * @param message The error message.
+     * @return The formatted error message as a String.
+     */
+    public static String showError(String message) {
+        return "Error: " + message;
     }
 }

@@ -27,4 +27,15 @@ public class Charlie {
         }
     }
 
+    public String getResponse(String input) {
+        String response = "";
+        try {
+            Parser parser = new Parser(input);
+            response = parser.getResponse(taskList);
+        } catch (Exception e) {
+            response = Ui.showError(e.getMessage());
+        }
+        return response;
+    }
+
 }

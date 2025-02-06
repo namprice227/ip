@@ -19,29 +19,27 @@ class TaskList {
      * Adds a new task to the list and saves the updated list to the storage file.
      *
      * @param task The task to be added to the list.
+     * @return A string containing the task added confirmation message.
      */
-    public void addTask(Task task) {
+    public String addTask(Task task) {
         tasks.add(task);
         storage.saveTasks(tasks);
-        System.out.println("Got it. I've added this task:");
-        System.out.println(task);
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        return "Got it. I've added this task:\n" + task + "\nNow you have " + tasks.size() + " tasks in the list.";
     }
 
     /**
      * Deletes a task from the list by its index and saves the updated list to the storage file.
      *
      * @param index The index of the task to be deleted (1-based).
+     * @return A string containing the task removed confirmation message.
      */
-    public void deleteTask(int index) {
+    public String deleteTask(int index) {
         if (index >= 1 && index <= tasks.size()) {
             Task removedTask = tasks.remove(index - 1);
             storage.saveTasks(tasks);
-            System.out.println("Noted. I've removed this task:");
-            System.out.println("  " + removedTask);
-            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+            return "Noted. I've removed this task:\n  " + removedTask + "\nNow you have " + tasks.size() + " tasks in the list.";
         } else {
-            System.out.println("Invalid task number.");
+            return "Invalid task number.";
         }
     }
 
@@ -49,15 +47,15 @@ class TaskList {
      * Marks a task as completed based on its index and saves the updated list to the storage file.
      *
      * @param index The index of the task to be marked as completed (1-based).
+     * @return A string containing the task marked as done confirmation message.
      */
-    public void markTask(int index) {
+    public String markTask(int index) {
         if (index >= 1 && index <= tasks.size()) {
             tasks.get(index - 1).mark();
             storage.saveTasks(tasks);
-            System.out.println("Nice! I've marked this task as done:");
-            System.out.println(tasks.get(index - 1));
+            return "Nice! I've marked this task as done:\n" + tasks.get(index - 1);
         } else {
-            System.out.println("Invalid task number.");
+            return "Invalid task number.";
         }
     }
 
@@ -65,38 +63,49 @@ class TaskList {
      * Unmarks a task, indicating it is not completed yet, based on its index and saves the updated list to the storage file.
      *
      * @param index The index of the task to be unmarked (1-based).
+     * @return A string containing the task unmarked confirmation message.
      */
-    public void unmarkTask(int index) {
+    public String unmarkTask(int index) {
         if (index >= 1 && index <= tasks.size()) {
             tasks.get(index - 1).unmark();
             storage.saveTasks(tasks);
-            System.out.println("OK, I've marked this task as not done yet:");
-            System.out.println(tasks.get(index - 1));
+            return "OK, I've marked this task as not done yet:\n" + tasks.get(index - 1);
         } else {
-            System.out.println("Invalid task number.");
+            return "Invalid task number.";
         }
     }
 
     /**
      * Lists all the tasks currently in the list.
      * If no tasks exist, a message is shown indicating that the list is empty.
+     *
+     * @return A string containing the list of tasks or an empty list message.
      */
-    public void listTasks() {
+    public String listTasks() {
         if (tasks.isEmpty()) {
-            System.out.println("There are no tasks, please feel free to add more");
+            return "There are no tasks, please feel free to add more";
         } else {
-            System.out.println("Here are the tasks in your list:");
+            StringBuilder taskList = new StringBuilder("Here are the tasks in your list:\n");
             for (int i = 0; i < tasks.size(); i++) {
-                System.out.println((i + 1) + ". " + tasks.get(i));
+                taskList.append((i + 1) + ". " + tasks.get(i) + "\n");
             }
+            return taskList.toString();
         }
     }
 
-    public void findTask(String taskName) {
+    /**
+     * Finds tasks that contain the given task name.
+     *
+     * @param taskName The task name to search for.
+     * @return A string containing the matching tasks.
+     */
+    public String findTask(String taskName) {
+        StringBuilder foundTasks = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).containsWord(taskName)) {
-                System.out.println((i + 1) + ". " + tasks.get(i));
+                foundTasks.append((i + 1) + ". " + tasks.get(i) + "\n");
             }
         }
+        return foundTasks.toString().isEmpty() ? "No matching tasks found." : foundTasks.toString();
     }
 }
