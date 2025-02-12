@@ -32,13 +32,13 @@ class Ui {
      * @return The help message as a String.
      */
     public static String printHelp() {
-        return "Here are the commands you can use:\n" +
-                "1. todo <task description>\n" +
-                "2. deadline <task description> /by <time>\n" +
-                "3. event <event description> /from <start time> /to <end time>\n" +
-                "4. delete <task number>\n" +
-                "5. list\n" +
-                "6. bye";
+        return "Here are the commands you can use:\n"
+                + "1. todo <task description>\n"
+                + "2. deadline <task description> /by <time>\n"
+                + "3. event <task description> /from <start time> /to <end time>\n"
+                + "4. delete <task number>\n"
+                + "5. list\n"
+                + "6. bye";
     }
 
     /**

@@ -31,119 +31,119 @@ class Parser {
      */
     public void action(TaskList taskList) {
         switch (this.action) {
-            case "" -> {
-                System.out.println("Please tell me what to do");
-                Ui.printHelp();
+        case "" -> {
+            System.out.println("Please tell me what to do");
+            Ui.printHelp();
+        }
+        case "list" -> {
+            taskList.listTasks();
+        }
+        case "mark" -> {
+            if (CharlieHandler.isValidNumber(task)) {
+                taskList.markTask(parseInt(task));
             }
-            case "list" -> {
-                taskList.listTasks();
+        }
+        case "unmark" -> {
+            if (CharlieHandler.isValidNumber(task)) {
+                taskList.unmarkTask(parseInt(task));
             }
-            case "mark" -> {
-                if (CharlieHandler.isValidNumber(task)) {
-                    taskList.markTask(parseInt(task));
-                }
+        }
+        case "todo" -> {
+            if (CharlieHandler.isValidTodo(task)) {
+                taskList.addTask(new Todo(task));
             }
-            case "unmark" -> {
-                if (CharlieHandler.isValidNumber(task)) {
-                    taskList.unmarkTask(parseInt(task));
-                }
+        }
+        case "deadline" -> {
+            if (CharlieHandler.isValidDeadline(task)) {
+                taskList.addTask(new Deadline(task));
             }
-            case "todo" -> {
-                if (CharlieHandler.isValidTodo(task)) {
-                    taskList.addTask(new Todo(task));
-                }
+        }
+        case "event" -> {
+            if (CharlieHandler.isValidEvent(task)) {
+                taskList.addTask(new Event(task));
             }
-            case "deadline" -> {
-                if (CharlieHandler.isValidDeadline(task)) {
-                    taskList.addTask(new Deadline(task));
-                }
+        }
+        case "delete" -> {
+            if (CharlieHandler.isValidNumber(task)) {
+                taskList.deleteTask(parseInt(task));
             }
-            case "event" -> {
-                if (CharlieHandler.isValidEvent(task)) {
-                    taskList.addTask(new Event(task));
-                }
-            }
-            case "delete" -> {
-                if (CharlieHandler.isValidNumber(task)) {
-                    taskList.deleteTask(parseInt(task));
-                }
-            }
-            case "find" -> {
-                taskList.findTask(task.trim());
-            }
-            case "bye" -> {
-                Ui.showGoodbye();
-                exit(0);
-            }
-            default -> Ui.printHelp();
+        }
+        case "find" -> {
+            taskList.findTask(task.trim());
+        }
+        case "bye" -> {
+            Ui.showGoodbye();
+            exit(0);
+        }
+        default -> Ui.printHelp();
         }
     }
 
     public String getResponse(TaskList taskList) {
         String response;
         switch (this.action) {
-            case "" -> {
-                response = "Please tell me what to do\n" + Ui.printHelp();
+        case "" -> {
+            response = "Please tell me what to do\n" + Ui.printHelp();
+        }
+        case "list" -> {
+            response = taskList.listTasks();
+        }
+        case "mark" -> {
+            if (CharlieHandler.isValidNumber(task)) {
+                taskList.markTask(parseInt(task));
+                response = "Task marked!";
+            } else {
+                response = "Invalid task number.";
             }
-            case "list" -> {
-                response = taskList.listTasks();
+        }
+        case "unmark" -> {
+            if (CharlieHandler.isValidNumber(task)) {
+                taskList.unmarkTask(parseInt(task));
+                response = "Task unmarked!";
+            } else {
+                response = "Invalid task number.";
             }
-            case "mark" -> {
-                if (CharlieHandler.isValidNumber(task)) {
-                    taskList.markTask(parseInt(task));
-                    response = "Task marked!";
-                } else {
-                    response = "Invalid task number.";
-                }
+        }
+        case "todo" -> {
+            if (CharlieHandler.isValidTodo(task)) {
+                taskList.addTask(new Todo(task));
+                response = "Todo added!";
+            } else {
+                response = "Invalid Todo task.";
             }
-            case "unmark" -> {
-                if (CharlieHandler.isValidNumber(task)) {
-                    taskList.unmarkTask(parseInt(task));
-                    response = "Task unmarked!";
-                } else {
-                    response = "Invalid task number.";
-                }
+        }
+        case "deadline" -> {
+            if (CharlieHandler.isValidDeadline(task)) {
+                taskList.addTask(new Deadline(task));
+                response = "Deadline added!";
+            } else {
+                response = "Invalid Deadline task.";
             }
-            case "todo" -> {
-                if (CharlieHandler.isValidTodo(task)) {
-                    taskList.addTask(new Todo(task));
-                    response = "Todo added!";
-                } else {
-                    response = "Invalid Todo task.";
-                }
+        }
+        case "event" -> {
+            if (CharlieHandler.isValidEvent(task)) {
+                taskList.addTask(new Event(task));
+                response = "Event added!";
+            } else {
+                response = "Invalid Event task.";
             }
-            case "deadline" -> {
-                if (CharlieHandler.isValidDeadline(task)) {
-                    taskList.addTask(new Deadline(task));
-                    response = "Deadline added!";
-                } else {
-                    response = "Invalid Deadline task.";
-                }
+        }
+        case "delete" -> {
+            if (CharlieHandler.isValidNumber(task)) {
+                taskList.deleteTask(parseInt(task));
+                response = "Task deleted!";
+            } else {
+                response = "Invalid task number.";
             }
-            case "event" -> {
-                if (CharlieHandler.isValidEvent(task)) {
-                    taskList.addTask(new Event(task));
-                    response = "Event added!";
-                } else {
-                    response = "Invalid Event task.";
-                }
-            }
-            case "delete" -> {
-                if (CharlieHandler.isValidNumber(task)) {
-                    taskList.deleteTask(parseInt(task));
-                    response = "Task deleted!";
-                } else {
-                    response = "Invalid task number.";
-                }
-            }
-            case "find" -> {
-                response = taskList.findTask(task.trim());
-            }
-            case "bye" -> {
-                Ui.showGoodbye();
-                response = "Goodbye!";
-            }
-            default -> response = Ui.printHelp();
+        }
+        case "find" -> {
+            response = taskList.findTask(task.trim());
+        }
+        case "bye" -> {
+            Ui.showGoodbye();
+            response = "Goodbye!";
+        }
+        default -> response = Ui.printHelp();
         }
         return response;
     }

@@ -57,32 +57,34 @@ public class Task {
      * @param line A string representing a task from a file.
      * @return A Task object based on the information in the line.
      */
-    static public Task addFromFile(String line) {
+    public static Task addFromFile(String line) {
         String[] parts = line.split("\\|");
         switch (parts[0]) {
-            case "T" -> {
-                if (parts[1].equals("1")) {
-                    return new Todo(parts[2], true);
-                } else {
-                    return new Todo(parts[2]);
-                }
-            }
-            case "D" -> {
-                if (parts[1].equals("1")) {
-                    return new Deadline(parts[2], parts[3], true);
-                } else {
-                    return new Deadline(parts[2], parts[3], false);
-                }
-            }
-            case "E" -> {
-                if (parts[1].equals("1")) {
-                    return new Event(parts[2], parts[3], parts[4], true);
-                } else {
-                    return new Event(parts[2], parts[3], parts[4], false);
-                }
+        case "T" -> {
+            if (parts[1].equals("1")) {
+                return new Todo(parts[2], true);
+            } else {
+                return new Todo(parts[2]);
             }
         }
-        return new Task(parts[0]);
+        case "D" -> {
+            if (parts[1].equals("1")) {
+                return new Deadline(parts[2], parts[3], true);
+            } else {
+                return new Deadline(parts[2], parts[3], false);
+            }
+        }
+        case "E" -> {
+            if (parts[1].equals("1")) {
+                return new Event(parts[2], parts[3], parts[4], true);
+            } else {
+                return new Event(parts[2], parts[3], parts[4], false);
+            }
+        }
+        default -> {
+            return new Task(parts[0]);
+        }
+        }
     }
 
     public String toString() {

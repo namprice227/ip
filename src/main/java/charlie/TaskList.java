@@ -37,7 +37,8 @@ class TaskList {
         if (index >= 1 && index <= tasks.size()) {
             Task removedTask = tasks.remove(index - 1);
             storage.saveTasks(tasks);
-            return "Noted. I've removed this task:\n  " + removedTask + "\nNow you have " + tasks.size() + " tasks in the list.";
+            return "Noted. I've removed this task:\n  "
+                    + removedTask + "\nNow you have " + tasks.size() + " tasks in the list.";
         } else {
             return "Invalid task number.";
         }
