@@ -29,55 +29,6 @@ class Parser {
      *
      * @param taskList The task list on which the action should be performed.
      */
-    public void action(TaskList taskList) {
-        switch (this.action) {
-        case "" -> {
-            System.out.println("Please tell me what to do");
-            Ui.printHelp();
-        }
-        case "list" -> {
-            taskList.listTasks();
-        }
-        case "mark" -> {
-            if (CharlieHandler.isValidNumber(task)) {
-                taskList.markTask(parseInt(task));
-            }
-        }
-        case "unmark" -> {
-            if (CharlieHandler.isValidNumber(task)) {
-                taskList.unmarkTask(parseInt(task));
-            }
-        }
-        case "todo" -> {
-            if (CharlieHandler.isValidTodo(task)) {
-                taskList.addTask(new Todo(task));
-            }
-        }
-        case "deadline" -> {
-            if (CharlieHandler.isValidDeadline(task)) {
-                taskList.addTask(new Deadline(task));
-            }
-        }
-        case "event" -> {
-            if (CharlieHandler.isValidEvent(task)) {
-                taskList.addTask(new Event(task));
-            }
-        }
-        case "delete" -> {
-            if (CharlieHandler.isValidNumber(task)) {
-                taskList.deleteTask(parseInt(task));
-            }
-        }
-        case "find" -> {
-            taskList.findTask(task.trim());
-        }
-        case "bye" -> {
-            Ui.showGoodbye();
-            exit(0);
-        }
-        default -> Ui.printHelp();
-        }
-    }
 
     public String getResponse(TaskList taskList) {
         String response;
@@ -140,7 +91,6 @@ class Parser {
             response = taskList.findTask(task.trim());
         }
         case "bye" -> {
-            Ui.showGoodbye();
             response = "Goodbye!";
         }
         default -> response = Ui.printHelp();
