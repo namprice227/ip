@@ -11,6 +11,7 @@ class TaskList {
     private final Storage storage;
 
     public TaskList(Storage storage) {
+        assert storage != null : "Storage must not be null";
         this.storage = storage;
         this.tasks = storage.loadTasks();
     }
@@ -22,6 +23,7 @@ class TaskList {
      * @return A string containing the task added confirmation message.
      */
     public String addTask(Task task) {
+        assert task != null : "Task cannot be null";
         tasks.add(task);
         storage.saveTasks(tasks);
         return "Got it. I've added this task:\n" + task + "\nNow you have " + tasks.size() + " tasks in the list.";

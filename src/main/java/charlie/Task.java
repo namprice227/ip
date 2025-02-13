@@ -9,11 +9,14 @@ public class Task {
     private Boolean marked;
 
     Task(String activity) {
+        assert activity != null : "Activity must not be null";
         this.activity = activity;
         this.marked = false;
     }
 
     Task(String activity, Boolean marked) {
+        assert activity != null : "Activity must not be null";
+        assert marked != null : "Marked flag must not be null";
         this.activity = activity;
         this.marked = marked;
     }
