@@ -23,6 +23,7 @@ class Parser {
         }
     }
 
+
     /**
      * Executes the corresponding action based on the parsed input.
      * The action is matched to a specific command and then the corresponding method of the TaskList is called.
