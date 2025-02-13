@@ -14,27 +14,20 @@ public class Charlie {
         this.taskList = new TaskList(storage);
     }
 
-    public void run() {
-        Ui.showWelcome();
-        while (true) {
-            try {
-                String fullCommand = Ui.readCommand();
-                Parser parser = new Parser(fullCommand);
-                parser.action(taskList);
-            } catch (Exception e) {
-                Ui.showError(e.getMessage());
-            }
-        }
-    }
-
     public String getResponse(String input) {
         String response = "";
         try {
-            Parser parser = new Parser(input);
-            response = parser.getResponse(taskList);
+            response = getString(input);
         } catch (Exception e) {
             response = Ui.showError(e.getMessage());
         }
+        return response;
+    }
+
+    private String getString(String input) {
+        String response;
+        Parser parser = new Parser(input);
+        response = parser.getResponse(taskList);
         return response;
     }
 
