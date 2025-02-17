@@ -49,8 +49,69 @@ public class Task {
         return "|" + ismarked + "|" + this.activity;
     }
 
-    public Boolean containsWord(String word) {
+    public Boolean matchWord(String word) {
         return this.activity.contains(word);
+    }
+
+    private int getMatchScore(String query) {
+        int score = 0;
+        // Split and convert to lower-case for case-insensitive comparisons.
+        String[] queryWords = query.toLowerCase().split("\\s+");
+        String[] activityWords = this.activity.toLowerCase().split("\\s+");
+
+        for (String queryWord : queryWords) {
+            score = getScore(queryWord, activityWords, score);
+        }
+        return score;
+    }
+
+    private int getScore(String queryWord, String[] activityWords, int score) {
+        for (String activityWord : activityWords) {
+            if (isFuzzyMatch(queryWord, activityWord)) {
+                score++;
+                break;
+            }
+        }
+        return score;
+    }
+
+    private boolean isFuzzyMatch(String a, String b) {
+        a = a.toLowerCase();
+        b = b.toLowerCase();
+
+        // For words shorter than 4 letters, require an exact match.
+        if (a.length() < 4 || b.length() < 4) {
+            return a.equals(b);
+        }
+
+        return isMatch(a, b);
+    }
+
+    private boolean isMatch(String a, String b) {
+        int i = 0, j = 0, diffCount = 0;
+        while (i < a.length() && j < b.length()) {
+            if (a.charAt(i) == b.charAt(j)) {
+                i++;
+                j++;
+            } else {
+                diffCount++;
+                if (diffCount > 2) {
+                    return false;
+                }
+                // If lengths are equal, treat this as a substitution.
+                if (a.length() == b.length()) {
+                    i++;
+                    j++;
+                } else if (a.length() > b.length()) {
+                    i++;
+                } else {
+                    j++;
+                }
+            }
+        }
+        // Account for any remaining characters.
+        diffCount += (a.length() - i) + (b.length() - j);
+        return diffCount <= 2;
     }
 
     /**

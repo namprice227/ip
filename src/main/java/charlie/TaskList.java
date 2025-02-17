@@ -105,7 +105,7 @@ class TaskList {
     public String findTask(String taskName) {
         StringBuilder foundTasks = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).containsWord(taskName)) {
+            if (tasks.get(i).matchWord(taskName)) {
                 foundTasks.append((i + 1) + ". " + tasks.get(i) + "\n");
             }
         }
