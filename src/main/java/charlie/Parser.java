@@ -1,7 +1,6 @@
 package charlie;
 
 import static java.lang.Integer.parseInt;
-import static java.lang.System.exit;
 
 /**
  * The Parser class is responsible for interpreting user input commands and performing actions
@@ -41,51 +40,51 @@ class Parser {
             response = taskList.listTasks();
         }
         case "mark" -> {
-            if (CharlieHandler.isValidNumber(task)) {
-                taskList.markTask(parseInt(task));
-                response = "Task marked!";
+            CharlieHandler handler = new CharlieHandler();
+            if (handler.isValidNumber(task)) {
+                response = taskList.markTask(parseInt(task));
             } else {
-                response = "Invalid task number.";
+                response = handler.getErrorMessage();
             }
         }
         case "unmark" -> {
-            if (CharlieHandler.isValidNumber(task)) {
-                taskList.unmarkTask(parseInt(task));
-                response = "Task unmarked!";
+            CharlieHandler handler = new CharlieHandler();
+            if (handler.isValidNumber(task)) {
+                response = taskList.unmarkTask(parseInt(task));
             } else {
-                response = "Invalid task number.";
+                response = handler.getErrorMessage();
             }
         }
         case "todo" -> {
-            if (CharlieHandler.isValidTodo(task)) {
-                taskList.addTask(new Todo(task));
-                response = "Todo added!";
+            CharlieHandler handler = new CharlieHandler();
+            if (handler.isValidTodo(task)) {
+                response = taskList.addTask(new Todo(task));
             } else {
-                response = "Invalid Todo task.";
+                response = handler.getErrorMessage();
             }
         }
         case "deadline" -> {
-            if (CharlieHandler.isValidDeadline(task)) {
-                taskList.addTask(new Deadline(task));
-                response = "Deadline added!";
+            CharlieHandler handler = new CharlieHandler();
+            if (handler.isValidDeadline(task)) {
+                response = taskList.addTask(new Deadline(task));
             } else {
-                response = "Invalid Deadline task.";
+                response = handler.getErrorMessage();
             }
         }
         case "event" -> {
-            if (CharlieHandler.isValidEvent(task)) {
-                taskList.addTask(new Event(task));
-                response = "Event added!";
+            CharlieHandler handler = new CharlieHandler();
+            if (handler.isValidEvent(task)) {
+                response = taskList.addTask(new Event(task));
             } else {
-                response = "Invalid Event task.";
+                response = handler.getErrorMessage();
             }
         }
         case "delete" -> {
-            if (CharlieHandler.isValidNumber(task)) {
-                taskList.deleteTask(parseInt(task));
-                response = "Task deleted!";
+            CharlieHandler handler = new CharlieHandler();
+            if (handler.isValidNumber(task)) {
+                response = taskList.deleteTask(parseInt(task));
             } else {
-                response = "Invalid task number.";
+                response = handler.getErrorMessage();
             }
         }
         case "find" -> {

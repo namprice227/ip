@@ -53,7 +53,7 @@ public class Task {
         return this.activity.contains(word);
     }
 
-    private int getMatchScore(String query) {
+    public int getMatchScore(String query) {
         int score = 0;
         // Split and convert to lower-case for case-insensitive comparisons.
         String[] queryWords = query.toLowerCase().split("\\s+");
