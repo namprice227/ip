@@ -1,6 +1,8 @@
 package charlie;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 /**
  * Represents a list of tasks that can be added, deleted, marked, unmarked, and listed.
@@ -102,13 +104,41 @@ class TaskList {
      * @param taskName The task name to search for.
      * @return A string containing the matching tasks.
      */
-    public String findTask(String taskName) {
-        StringBuilder foundTasks = new StringBuilder();
+    public String findTask(String query) {
+        PriorityQueue<TaskEntry> pq = new PriorityQueue<>(Comparator.comparingInt(TaskEntry::getScore).reversed());
+
         for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).matchWord(taskName)) {
-                foundTasks.append((i + 1) + ". " + tasks.get(i) + "\n");
+            int score = tasks.get(i).getMatchScore(query);
+            if (score > 0) { // Only add relevant matches
+                pq.offer(new TaskEntry(i + 1, tasks.get(i), score));
             }
         }
-        return foundTasks.toString().isEmpty() ? "No matching tasks found." : foundTasks.toString();
+
+        if (pq.isEmpty()) {
+            return "No matching tasks found.";
+        }
+
+        StringBuilder foundTasks = new StringBuilder();
+        while (!pq.isEmpty()) {
+            TaskEntry entry = pq.poll();
+            foundTasks.append(entry.index).append(". ").append(entry.task).append("\n");
+        }
+        return foundTasks.toString();
+    }
+
+    private static class TaskEntry {
+        int index;
+        Task task;
+        int score;
+
+        TaskEntry(int index, Task task, int score) {
+            this.index = index;
+            this.task = task;
+            this.score = score;
+        }
+
+        public int getScore() {
+            return score;
+        }
     }
 }
