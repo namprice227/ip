@@ -70,5 +70,4 @@ class Storage {
             System.out.println("Error writing to file");
         }
     }
-
 }

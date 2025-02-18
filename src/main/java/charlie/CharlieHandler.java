@@ -84,7 +84,8 @@ public class CharlieHandler {
                     """;
             return false;
         }
-        if (!isValidDate(words.split("/from")[1].split("/to")[0]) && !isValidDate(words.split("/from")[1].split("/to")[1])) {
+        if (!isValidDate(words.split("/from")[1].split("/to")[0])
+                && !isValidDate(words.split("/from")[1].split("/to")[1])) {
             errorMessage = """
                     Oh no! your date needs to be in the format YYYY-MM-DD
                     Usage: event <event description> /from <start time> /to <end time>

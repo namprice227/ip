@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+
 /**
  * Represents a list of tasks that can be added, deleted, marked, unmarked, and listed.
  * This class manages tasks by interacting with the Storage class to persist data in a file.
@@ -65,7 +66,8 @@ class TaskList {
     }
 
     /**
-     * Unmarks a task, indicating it is not completed yet, based on its index and saves the updated list to the storage file.
+     * Unmarks a task, indicating it is not completed yet, based on its index
+     * and saves the updated list to the storage file.
      *
      * @param index The index of the task to be unmarked (1-based).
      * @return A string containing the task unmarked confirmation message.
@@ -127,9 +129,9 @@ class TaskList {
     }
 
     private static class TaskEntry {
-        int index;
-        Task task;
-        int score;
+        private int index;
+        private Task task;
+        private int score;
 
         TaskEntry(int index, Task task, int score) {
             this.index = index;

@@ -1,12 +1,12 @@
 package charlie;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 
 public class Main extends Application {
@@ -20,7 +20,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setCharlie(charlie);  // inject the Charlie instance
+            fxmlLoader.<MainWindow>getController().setCharlie(charlie);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

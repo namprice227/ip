@@ -88,7 +88,9 @@ public class Task {
     }
 
     private boolean isMatch(String a, String b) {
-        int i = 0, j = 0, diffCount = 0;
+        int i = 0;
+        int j = 0;
+        int diffCount = 0;
         while (i < a.length() && j < b.length()) {
             if (a.charAt(i) == b.charAt(j)) {
                 i++;
