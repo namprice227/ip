@@ -2,7 +2,7 @@
 
 *A simple task manager chatbot for efficient productivity.*
 
-![Charlie Chatbot](https://via.placeholder.com/800x400.png)  
+![Charlie Chatbot](Ui.png)
 *(Replace with an actual screenshot of your application.)*
 
 ## **Introduction**
