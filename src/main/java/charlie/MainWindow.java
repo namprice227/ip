@@ -29,6 +29,9 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().add(
+                DialogBox.getCharlieDialog("Hello! I'm Charlie. How can I assist you today?", charlieImage)
+        );
     }
 
     /**
