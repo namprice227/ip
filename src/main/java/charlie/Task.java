@@ -6,33 +6,33 @@ package charlie;
  */
 public class Task {
     private final String activity;
-    private Boolean marked;
+    private Boolean ismarked;
 
     Task(String activity) {
         assert activity != null : "Activity must not be null";
         this.activity = activity;
-        this.marked = false;
+        this.ismarked = false;
     }
 
-    Task(String activity, Boolean marked) {
+    Task(String activity, Boolean ismarked) {
         assert activity != null : "Activity must not be null";
-        assert marked != null : "Marked flag must not be null";
+        assert ismarked != null : "Marked flag must not be null";
         this.activity = activity;
-        this.marked = marked;
+        this.ismarked = ismarked;
     }
 
     /**
      * Marks the task as completed.
      */
     public void mark() {
-        this.marked = true;
+        this.ismarked = true;
     }
 
     /**
      * Unmarks the task, setting its status back to incomplete.
      */
     public void unmark() {
-        this.marked = false;
+        this.ismarked = false;
     }
 
     /**
@@ -43,7 +43,7 @@ public class Task {
      */
     public String writeToFile() {
         int ismarked = 0;
-        if (this.marked) {
+        if (this.ismarked) {
             ismarked = 1;
         }
         return "|" + ismarked + "|" + this.activity;
@@ -53,9 +53,14 @@ public class Task {
         return this.activity.contains(word);
     }
 
+    /**
+     * Calculates the match score between the query and the activity.
+     *
+     * @param query The input query string.
+     * @return The match score based on fuzzy matching.
+     */
     public int getMatchScore(String query) {
         int score = 0;
-        // Split and convert to lower-case for case-insensitive comparisons.
         String[] queryWords = query.toLowerCase().split("\\s+");
         String[] activityWords = this.activity.toLowerCase().split("\\s+");
 
@@ -65,6 +70,14 @@ public class Task {
         return score;
     }
 
+    /**
+     * Computes the score for a single query word against activity words.
+     *
+     * @param queryWord     The word from the query.
+     * @param activityWords Array of words from the activity.
+     * @param score         The current score to be updated.
+     * @return The updated match score.
+     */
     private int getScore(String queryWord, String[] activityWords, int score) {
         for (String activityWord : activityWords) {
             if (isFuzzyMatch(queryWord, activityWord)) {
@@ -75,11 +88,17 @@ public class Task {
         return score;
     }
 
+    /**
+     * Determines whether two words are a fuzzy match.
+     *
+     * @param a The first word.
+     * @param b The second word.
+     * @return True if the words match based on the fuzzy logic.
+     */
     private boolean isFuzzyMatch(String a, String b) {
         a = a.toLowerCase();
         b = b.toLowerCase();
 
-        // For words shorter than 4 letters, require an exact match.
         if (a.length() < 4 || b.length() < 4) {
             return a.equals(b);
         }
@@ -87,6 +106,13 @@ public class Task {
         return isMatch(a, b);
     }
 
+    /**
+     * Checks if two words match within an allowed difference threshold.
+     *
+     * @param a The first word.
+     * @param b The second word.
+     * @return True if the words match within two character differences.
+     */
     private boolean isMatch(String a, String b) {
         int i = 0;
         int j = 0;
@@ -100,7 +126,6 @@ public class Task {
                 if (diffCount > 2) {
                     return false;
                 }
-                // If lengths are equal, treat this as a substitution.
                 if (a.length() == b.length()) {
                     i++;
                     j++;
@@ -111,7 +136,6 @@ public class Task {
                 }
             }
         }
-        // Account for any remaining characters.
         diffCount += (a.length() - i) + (b.length() - j);
         return diffCount <= 2;
     }
@@ -154,7 +178,7 @@ public class Task {
     }
 
     public String toString() {
-        if (marked) {
+        if (ismarked) {
             return "[X] " + activity.trim();
         } else {
             return "[ ] " + activity.trim();
