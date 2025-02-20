@@ -20,7 +20,7 @@ then
 fi
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.txt
-java -classpath ../bin Duke < input.txt > ACTUAL.txt
+java -classpath ../bin Charlie < input.txt > ACTUAL.txt
 
 # convert to UNIX format
 cp EXPECTED.TXT EXPECTED-UNIX.TXT

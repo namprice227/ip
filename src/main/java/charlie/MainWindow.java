@@ -21,10 +21,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private Charlie duke;
+    private Charlie charlie;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaCharlie.png"));
+    private Image charlieImage = new Image(this.getClass().getResourceAsStream("/images/DaCharlie.png"));
 
     @FXML
     public void initialize() {
@@ -35,7 +35,7 @@ public class MainWindow extends AnchorPane {
      * Injects the Charlie instance
      */
     public void setCharlie(Charlie c) {
-        duke = c;
+        charlie = c;
     }
 
     /**
@@ -46,10 +46,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.getResponse(input);
+        String response = charlie.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getCharlieDialog(response, dukeImage)
+                DialogBox.getCharlieDialog(response, charlieImage)
         );
         userInput.clear();
     }
