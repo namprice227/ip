@@ -20,6 +20,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setTitle("Charlie Task manager");
             fxmlLoader.<MainWindow>getController().setCharlie(charlie);
             stage.show();
         } catch (IOException e) {
