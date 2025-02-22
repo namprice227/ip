@@ -2,7 +2,6 @@ package charlie;
 
 import org.junit.jupiter.api.Test;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DeadlineTest {
@@ -26,5 +25,21 @@ class DeadlineTest {
 
         Deadline markedDeadline = new Deadline("finish project", "2025-05-10", true);
         assertEquals("D|1|finish project|2025-05-10\n", markedDeadline.writeToFile());
+    }
+
+    @Test
+    void testInvalidFormatHandling() {
+        try {
+            new Deadline("invalid deadline format");
+        } catch (Exception e) {
+            assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
+        }
+    }
+
+    @Test
+    void testWriteToFileWithExceptionHandling() {
+        Deadline deadline = new Deadline("test task", "2025-06-15", false);
+        String expectedOutput = "D|0|test task|2025-06-15\n";
+        assertEquals(expectedOutput, deadline.writeToFile());
     }
 }
