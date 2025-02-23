@@ -12,6 +12,7 @@ repositories {
 
 dependencies {
 
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0' // Use the latest version
     String javaFxVersion = '17.0.7'
     implementation("org.openjfx:javafx-controls:17.0.7")
     implementation("org.openjfx:javafx-fxml:17.0.7")
