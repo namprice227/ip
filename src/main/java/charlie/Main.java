@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private Charlie charlie = new Charlie("/data/Charlie.txt");
+    private Charlie charlie = new Charlie("data/Charlie.txt");
 
     @Override
     public void start(Stage stage) {

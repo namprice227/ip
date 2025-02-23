@@ -6,6 +6,8 @@ plugins {
 //    id 'checkstyle'
 }
 
+group 'charlie'
+
 repositories {
     mavenCentral()
 }
@@ -53,6 +55,7 @@ application {
 }
 
 shadowJar {
+    archiveBaseName = "duke"
     archiveFileName = "charlie.jar"
     archiveClassifier = null
     manifest {
@@ -62,20 +65,11 @@ shadowJar {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'alden.Launcher'
+        attributes 'Main-Class': 'charlie.Launcher'
     }
-}
-
-run {
-    standardInput = System.in
 }
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
-
-tasks.withType(JavaCompile) {
-    options.release.set(17)
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
